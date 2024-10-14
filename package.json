@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "axios": "^1.7.7",
+    "part2": "^1.0.0"
+  },
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.2"
+  }
+}
