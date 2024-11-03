@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Notification from './Notification'; // Import the Notification component
 
+const baseURL = 'http://localhost:3001/api/persons';
+
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState('');
@@ -10,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/persons')
+      .get(baseURL)
       .then(response => {
         setPersons(response.data);
       });
@@ -26,7 +28,7 @@ const App = () => {
     }
 
     axios
-      .post('http://localhost:3001/persons', personObject)
+      .post(baseURL, personObject)
       .then(response => {
         setPersons(persons.concat(response.data));
         setNewName('');
@@ -49,7 +51,7 @@ const App = () => {
   const handleDeleteClick = (id) => {
     if (window.confirm('Are you sure you want to delete this persons number?')) {
       axios
-        .delete(`http://localhost:3001/persons/${id}`)
+        .delete(`${baseURL}/${id}`)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id));
         });
